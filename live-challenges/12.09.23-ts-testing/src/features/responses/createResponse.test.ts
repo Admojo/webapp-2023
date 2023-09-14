@@ -1,13 +1,18 @@
-// TODO: Not implemented
+// TODO: Not implemented 
+
+import { createResponses } from "./createResponse"
+
+// Hint: definer standard verdier, da har du mer kontroll på forventet respons-data
 const fakerMock: Faker = {
-  id,
-  answer,
+  id: () => "1",
+  answer: () =>
   score,
   category,
 }
 
 describe.only("Create responses", () => {
   it("should create response", () => {
+    const responses = createResponses ( {count: 10, faker: fakerMock})
     expect(responses.size).toBe(10)
   })
   it("should have correct data", () => {

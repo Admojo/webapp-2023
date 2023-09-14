@@ -1,3 +1,4 @@
+import { string } from "zod"
 import { CreateResponses, Faker } from "./types"
 
 const fakeAnswers: string[] = [
@@ -6,6 +7,11 @@ const fakeAnswers: string[] = [
   "StellarScent Perfume",
   "PurrfectPillow Pet Bed",
 ]
+
+const getAnswers = <T>(items: T[]) => {
+  fakeAnswers.forEach((item => {
+    return item)
+  }
 
 const fakeScores: number[] = [3, 2, 1]
 
@@ -19,12 +25,14 @@ const getRandomId = () => {
   return Math.random().toString(36).slice(2)
 }
 
-// TODO: Oppgave 1 - Not implemented
+
+
+// Oppgave 1 -  løsningsforslag 
 const faker: Faker = {
-  id,
-  answer,
-  score,
-  category,
+  id: getRandomId,
+  answer: () => getRandomItem <string> (fakeAnswers),
+  score: () => getRandomItem<number>(fakeScores),
+  category: () => getRandomItem<string>(fakeCategories),
 }
 
 // TODO: Oppgave 1 - Not implemented
