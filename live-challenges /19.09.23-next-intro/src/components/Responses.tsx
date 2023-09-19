@@ -1,4 +1,18 @@
-export default function Responses() {
+import { createResponses } from "@/features/responses/createResponse"
+import { ReactNode } from "react"
+import ResponseItem from "./ResponseItem"
+
+
+export default function Responses( {children}: {children: ReactNode}) {
+  const responses = Array.from(createResponses({count: 10, faker}).values()) //henter ut verdier vi faker . values
+  const aleternative = {
+      id: "1",
+      answer: "My answer",
+      score: 22,
+      category: "Animals",
+      questionId: "1234",
+  }
+
     return (
       <div className="relative mx-auto mt-4 max-w-2xl overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-500 dark:text-gray-400">
@@ -8,7 +22,7 @@ export default function Responses() {
                 ID
               </th>
               <th scope="col" className="px-6 py-3">
-                Answere
+                Answer
               </th>
               <th scope="col" className="px-6 py-3">
                 Score
@@ -22,23 +36,11 @@ export default function Responses() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-              <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                answer-id
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                Her er svaret
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                22
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                kategori-1
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
-                1234
-              </td>
-            </tr>
+            {children} 
+            {/* {responses.map((response) => (  // .map - moderne måten å gå gjennom array, må benytte en key 
+              <ResponseItem key = {response.id} {...response} />
+            ))} */}
+            {/* <ResponseItem {...aleternative}/> */ }
           </tbody>
         </table>
       </div>
