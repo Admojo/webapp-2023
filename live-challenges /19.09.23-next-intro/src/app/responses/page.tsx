@@ -6,6 +6,8 @@ import ResponseItem from "@/components/ResponseItem"
 import Responses from "@/components/Responses"
 import { createResponses, faker } from "@/features/responses/createResponse"
 
+
+//Funksjonen endrer verdier, useState holder styring på tilstanden til "events" eks. 
 export default function ResponsePage() {
   const [responses, setResponeses] = useState(
     Array.from(createResponses({ count: 10, faker }).values())
