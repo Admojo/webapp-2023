@@ -2,6 +2,10 @@
 const config = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    serverActions: true,
+    serverComponentsExternalPackages: ["@prisma/client"],
+  },
   eslint: {
     ignoreDuringBuilds: !!process.env.CI,
   },

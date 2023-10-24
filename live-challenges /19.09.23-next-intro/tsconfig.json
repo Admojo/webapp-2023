@@ -3,7 +3,7 @@
   "display": "Next.js",
   "extends": "./base.json",
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -49,6 +49,12 @@
       ],
       "@/config": [
         "./src/config/*"
+      ],
+      "@/store": [
+        "./src/store/*"
+      ],
+      "@/tests": [
+        "./src/tests/*"
       ]
     }
   },
