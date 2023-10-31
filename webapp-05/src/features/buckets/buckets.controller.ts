@@ -21,6 +21,18 @@ const itemMapper = (item: PrismaItem) => {
 export async function listBuckets(): Promise<NextResponse<Result<Bucket[]>>> {
   try {
     const buckets = await prisma.bucket.findMany({})
+    return NextResponse.json({success: true, data: buckets }, {status: 200})
+  } catch (error) {
+    return NextResponse.json(
+        {success: false, error: JSON.stringify(error)},
+        {status: 500},
+    )
+  }
+}
+
+// export async function listBuckets(): Promise<NextResponse<Result<Bucket[]>>> {
+  try {
+    const buckets = await prisma.bucket.findMany({})
 
     return NextResponse.json(
       { success: true, data: buckets.map(bucketMapper) },
@@ -32,7 +44,7 @@ export async function listBuckets(): Promise<NextResponse<Result<Bucket[]>>> {
       { status: 500 },
     )
   }
-}
+//}
 
 export async function createBucket(
   request: NextRequest,

@@ -14,7 +14,8 @@ export default function BucketItem({
 }) {
   return (
     <div className="mt-4 flex items-center justify-between gap-4">
-      <BucketContext.Provider value={bucket}>{children}</BucketContext.Provider>
+      <BucketContext.Provider value={bucket}>{children}</BucketContext.Provider> 
+      {/* BucketContext.Provider gjør at dette kan gjenbrukes flere steder */}
     </div>
   )
 }

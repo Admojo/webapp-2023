@@ -29,36 +29,55 @@ export default function ProductForm({
 
   const router = useRouter()
 
+
+  // const handleSumbit = async (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+
+  //   const { url, method }: { url: string; method: Method } = initialData
+  //     ? {
+  //         url: `/api/buckets/${initialData.id}`,
+  //         method: "put",
+  //       }
+  //     : {
+  //         url: `/api/buckets`,
+  //         method: "post",
+  //       }
+
+  //   if (!validForm(form)) {
+  //     setError("Invalid form")
+  //     return
+  //   }
+  //   const result = await run<Result<Bucket>>(url, method, {
+  //     body: JSON.stringify(form),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+
+  //   if (result?.success) {
+  //     setTimeout(() => {
+  //       router.push(`/buckets/${result.data?.id}`)
+  //     }, 2000)
+  //   }
+  // }
+
   const handleSumbit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
-    const { url, method }: { url: string; method: Method } = initialData
-      ? {
-          url: `/api/buckets/${initialData.id}`,
-          method: "put",
-        }
-      : {
-          url: `/api/buckets`,
-          method: "post",
-        }
-
-    if (!validForm(form)) {
-      setError("Invalid form")
-      return
-    }
-    const result = await run<Result<Bucket>>(url, method, {
-      body: JSON.stringify(form),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-
-    if (result?.success) {
-      setTimeout(() => {
-        router.push(`/buckets/${result.data?.id}`)
-      }, 2000)
+    try {
+      await fetch( "api/buckets", {
+        method: "post", 
+        body: JSON.stringify(form),
+      })
+      const result = await response.json()
+      console.log(result)
+      router.push(`buckets/${result.data.id}`)
+    } catch (error) {
+      console.error(error)
     }
   }
+  //Skal håndtere api kall, må derfor være en async
+  //Ideelt sett: metode for å validere form input data, legge ve
+
 
   const handleFormUpdate = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>,

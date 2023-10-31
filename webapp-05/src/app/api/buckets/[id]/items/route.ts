@@ -8,3 +8,4 @@ export async function POST(
 ) {
   return bucketsController.createBucketItem(request, params.id)
 }
+
